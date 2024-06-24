@@ -29,7 +29,7 @@ class SubjectController extends Controller
         $save->name = trim($request->name);
         $save->type = trim($request->type);
         $save->status = trim($request->status); 
-        $save->created_by =Auth::user()->user_type;
+        $save->created_by =Auth::user()->id;
         $save->save(); 
         
         return redirect('admin/subject/list')->with('success',"Subject Successfully Created"); 

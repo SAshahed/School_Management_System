@@ -41,7 +41,7 @@ class ClassSubjectController extends Controller
                 $save->class_id = $request->class_id;
                 $save->subject_id = $subject_id;
                 $save->status = $request->status;
-                $save->created_by = Auth::user()->user_type;
+                $save->created_by = Auth::user()->id;
                 $save->save();
 
 
@@ -102,7 +102,7 @@ class ClassSubjectController extends Controller
                   $save->class_id = $request->class_id;
                   $save->subject_id = $subject_id;
                   $save->status = $request->status;
-                  $save->created_by = Auth::user()->user_type;
+                  $save->created_by = Auth::user()->id;
                   $save->save();
   
   

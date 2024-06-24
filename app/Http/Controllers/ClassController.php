@@ -27,7 +27,7 @@ class ClassController extends Controller
         $save = new ClassModel;
         $save->name = $request->name;
         $save->status = $request->status; 
-        $save->created_by =Auth::User()->user_type;
+        $save->created_by =Auth::User()->id;
         $save->save();
         
         return redirect('admin/class/list')->with('success',"Class Successfully Created");
