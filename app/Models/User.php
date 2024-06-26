@@ -74,9 +74,83 @@ class User extends Authenticatable
                             $return =$return->whereDate('created_at','=', Request::get('date'));
                          }
         $return = $return->orderby('id','desc')
-                         ->paginate(5);
+                         ->paginate(10);
         return $return;
     }
+
+    static public function getParent()
+    {
+        $return = self::select('users.*')
+                         ->where('user_type','=',4)
+                         ->where('is_delete','=',0);
+
+                         if(!empty(Request::get('name')))
+
+                         {
+                            $return =$return->where('users.name','like','%'.Request::get('name').'%');
+                         }
+                         if(!empty(Request::get('last_name')))
+
+                         {
+                            $return =$return->where('users.last_name','like','%'.Request::get('last_name').'%');
+                         }
+                         if(!empty(Request::get('email')))
+
+                         {
+                            $return =$return->where('users.email','like','%'.Request::get('email').'%');
+                         }
+                        
+
+                         if(!empty(Request::get('class')))
+
+                         {
+                            $return =$return->where('class.name','like','%'.Request::get('name').'%');
+                         }
+                         if(!empty(Request::get('gender')))
+
+                         {
+                            $return =$return->where('users.gender','=', Request::get('gender'));
+                         }
+
+                         
+                         if(!empty(Request::get('mobile_number')))
+
+                         {
+                            $return =$return->where('users.mobile_number','like','%'.Request::get('mobile_number').'%');
+                         }
+                         if(!empty(Request::get('address')))
+
+                         {
+                            $return =$return->where('users.address','like','%'.Request::get('address').'%');
+                         }
+                         if(!empty(Request::get('occupation')))
+
+                         {
+                            $return =$return->where('users.occupation','like','%'.Request::get('occupation').'%');
+                         }
+                         
+
+                         if(!empty(Request::get('date')))
+
+                         {
+                            $return =$return->whereDate('users.created_at','=', Request::get('date'));
+                         }
+
+                         if(!empty(Request::get('status')))
+
+                         {
+                            $status = (Request::get('status') == 100)? 0 : 1;
+
+                            $return =$return->where('users.status','=', $status);
+                         }
+
+                       
+        $return = $return->orderby('id','desc')
+                         ->paginate(10);
+        return $return;
+    }
+
+
 
     static public function getStudent()
     {
@@ -119,7 +193,7 @@ class User extends Authenticatable
                          if(!empty(Request::get('gender')))
 
                          {
-                            $return =$return->where('users.gender','like','%'.Request::get('gender').'%');
+                           $return =$return->where('users.gender','=', Request::get('gender'));
                          }
 
                          if(!empty(Request::get('caste')))
@@ -158,9 +232,9 @@ class User extends Authenticatable
                          if(!empty(Request::get('status')))
 
                          {
-                              $status = (Request::get('status') == 100)? 0 : 1;
+                            $status = (Request::get('status') == 100)? 0 : 1;
 
-                            $return =$return->whereDate('users.status','=', $status);
+                            $return =$return->where('users.status','=', $status);
                          }
 
 
