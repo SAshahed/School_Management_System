@@ -122,7 +122,7 @@
           
           
             <div class="card">
-              <div class="card-header">
+              <div class="card-header" >
                 <h3 class="card-title">Parent List</h3>
               </div>
               <!-- /.card-header -->
@@ -164,9 +164,11 @@
                         <td>{{ ($value->status ==0)? 'Active' : 'Inactive'  }} </td>
                         
                         <td>{{ date('d-m-y H:i A',strtotime ($value->created_at)) }} </td>
-                        <td>
+                        <td >
                           <a href="{{ url('admin/parent/edit/' .$value->id) }}" class="btn btn-primary">Edit</a>
                           <a href="{{ url('admin/parent/delete/' .$value->id) }}" class="btn btn-danger">Delete</a> 
+                          <a href="{{ url('admin/parent/my_student/' .$value->id) }}" class="btn btn-primary">My Student</a> 
+
                         </td>
                     </tr>
                     @endforeach

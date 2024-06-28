@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 24, 2024 at 10:52 PM
+-- Generation Time: Jun 28, 2024 at 08:46 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -218,8 +218,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('fjsalAAlHOWn5IlgAfCrawqUjG5weec6MSAvyCtK', 17, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiVEtFRnBQOGdVQXNUNGtTb2Z4aFphVkFOY2pPeVNqQWxGOE9xWDdLNSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTc7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDA6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9zdHVkZW50L2xpc3QiO319', 1719223133),
-('oOx7u3AUBANrALeOqwQGP9fZGRiTqaM92FgfuLdH', 17, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoib250eUJOZ1lCc3ZvdHNNZmhYYkZ3a1pkQkt4bXEwcms5Y2VoQXJEeiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTc7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9kYXNoYm9hcmQiO319', 1719262262);
+('c9Snl3Oq5QhyUUaP1z3uRS8PYxVwo080nLmqTadO', 17, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMlhaZ2F1b0RiQldJbHhlM2NzT1JYbGtuUUVIMnl0aFZMS3JDbm5FNCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTc7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9wYXJlbnQvbXlfc3R1ZGVudC8zMyI7fX0=', 1719557006);
 
 -- --------------------------------------------------------
 
@@ -258,6 +257,7 @@ INSERT INTO `subject` (`id`, `name`, `type`, `created_by`, `status`, `is_delete`
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `parent_id` int(11) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `last_name` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
@@ -278,6 +278,8 @@ CREATE TABLE `users` (
   `blood_group` varchar(10) DEFAULT NULL,
   `height` varchar(10) DEFAULT NULL,
   `weight` varchar(10) DEFAULT NULL,
+  `occupation` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
   `is_delete` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0:not deleted,1:deleted',
   `status` tinyint(4) DEFAULT 0 COMMENT '0: active, 1: inactive',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -288,25 +290,27 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `last_name`, `email`, `email_verified_at`, `password`, `remember_token`, `user_type`, `admission_number`, `roll_number`, `class_id`, `gender`, `date_of_birth`, `caste`, `religion`, `mobile_number`, `admission_date`, `profile_pic`, `blood_group`, `height`, `weight`, `is_delete`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', NULL, 'admin1@gmail.com', NULL, '$2y$12$yVQ1hb.iFttW3DxxoPdtA.XRgCrotQSMNLhatSqipRUKq8ag1qwSC', '4XOU6UiSyqbouMzvSGFUi29NvpMKYzsIXA7GKLEOoioZePggBn7DO3qjhvnS', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2024-05-26 19:39:49', '2024-06-01 04:12:09'),
-(2, 'Teacher', NULL, 'teacher@gmail.com', NULL, '$2y$12$FO5L6o7/j/Y9z19WLlsJx.s6iev5xTk8g9MowH9ERGxMt60dK.1oa', 'PXXXOAQhjDfZOyTzWUIYZOyRB0WAqBJpi2lwaWITEKHRfyNpLDWDXhz3hmUc', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2024-05-26 20:08:57', '2024-05-31 13:53:04'),
-(4, 'Student', NULL, 'student@gmail.com', NULL, '$2y$12$s75BBAfKJlWglO9ZhLPa7.TGLNqZMjgsH2BPaeRRoRwdj3OveXdB2', 'Gr4QIKC6htai8s4MJe28L3mOJuq5QnzwSVhm2CrYyHNHRKq7VuwryID412Ih', 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-05-26 19:39:49', '2024-06-24 01:45:34'),
-(5, 'Parent', NULL, 'parent@gmail.com', NULL, '$2y$12$iWTSrMTtw8hRQfpHzghhoOd9jW5jitZG4TwDPQ.xJzUylisHFUwFa', 'RytzijcDZvJ8N1MmzK6c57LukPZN3f', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2024-05-26 19:39:49', '2024-05-28 15:53:49'),
-(6, 'umair', NULL, 'umair@gmail.com', NULL, '$2y$12$MxYldJnKKZAkEyiD.Seuf.cXIG2sBna4qSTJa69JygBlnPEYlZ866', NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-05-30 15:38:17', '2024-06-24 01:45:28'),
-(9, 'Hasin', NULL, 'Hasin@gmail.com', NULL, '$2y$12$pzqikNLntPXRwZeeY.nVLuFL7RDiSfCSaE.cL1J.rtrN2aM2CqSkm', NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-05-30 15:40:17', '2024-06-24 01:45:21'),
-(10, 'Kadija', NULL, 'kadina@gmail.com', NULL, '$2y$12$CsRVOmMWS68L7skdVfLJHuojCJ11Nr/Y5j350aIfq21.CI9jOWVqO', NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-05-30 15:41:02', '2024-06-24 01:45:11'),
-(11, 'Shahed', NULL, 'shahed@gmail.com', NULL, '$2y$12$NAeVW2YMP5gUM/BIElYJEebdFMtwEzWbjld8iyfkGXolo5NleBM2.', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2024-05-30 15:45:21', '2024-05-30 15:45:21'),
-(12, 'kazi', NULL, 'kazi@gmail.com', NULL, '$2y$12$bg9giD/9At1sQVnjzj/8pe1DT0JrPcVGmUBWcq2hek/r0MD/SPAHO', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-05-31 03:12:26', '2024-06-01 02:42:45'),
-(16, 'KAZI1', NULL, 'kazi1@gmail.com', NULL, '$2y$12$0VDmx/p5pc63MtjhQkkrv.yyfBWeBAn4E/BW.BZRYLYXtjh9/lZy.', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-06-01 03:32:21', '2024-06-01 03:32:40'),
-(17, 'Admin1', NULL, 'admin@gmail.com', NULL, '$2y$12$/ijSGTBxV05HCZvfYqLD1e1K/Fbt/gh0VDxdO2plNhnZZvBJOIuj2', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2024-06-01 04:12:37', '2024-06-12 02:46:35'),
-(25, 'Shahed', 'tee', 'dfdn@gmail.com', NULL, '$2y$12$SuaRFYoxtZY/m4dZ6r/J4uvC2qtddNHZdnvXVRljAHGGQ1p.naIt6', NULL, 3, 'fdfdsfsd', 'rerer', 1, 'male', '2024-06-13', '', '', 'dfdf', '2024-06-13', 'tx5kkkijhas4ssrsdze7.jpg', '', '4', '34', 0, 0, '2024-06-13 03:52:00', '2024-06-13 03:52:00'),
-(26, 'sha', 'test', 'hjhghg@gmail.com', NULL, '$2y$12$KVpocQKvgZ0KMiJR4cxt5.Pipc/o6qEZB3gND9SCBYP0kFCOjlCAy', NULL, 3, 'fdfdsfsd', 'fdfdfsd', 1, 'male', '2024-06-20', 'dfd', 'fdfd', '65645634', '2024-06-20', 'v38jwk1qdsvm5yqafa5r.jpg', 'a', '4', '5', 0, 0, '2024-06-13 04:00:34', '2024-06-13 04:00:34'),
-(27, 'zyx', 'test', 'ghgh@gmail.com', NULL, '$2y$12$LrYUO.LrFzbm/ISc77sVpet2dlTTK1jap1sAXSxTjCn0IUml2k7CK', NULL, 3, '333', 'rerer', 1, 'male', '2024-06-13', 'fdf', 'fdfsd', '65645634', '2024-06-13', 'dojdmsntozwggxwuio2r.jpg', 's', '4', '5', 1, 0, '2024-06-13 04:22:30', '2024-06-24 01:45:47'),
-(28, 'hasin', 'abrar', 'hasinnn@gmail.com', NULL, '$2y$12$nPyZckZAPIfoSQmmWfXWUOgtKmlsS2LvS5OSfPuOucpEpc7p7xL92', NULL, 3, '5555', '66565', 1, '', '2024-06-13', 'dfd', 'islam', '65645634', '2024-06-14', 'e4ittpbkj9flq79vwhng.png', '', '4', '5', 0, 0, '2024-06-13 10:07:53', '2024-06-13 14:13:10'),
-(30, 'Shahed', 'fsdfsdfsdf', 'dfdn1@gmail.com', NULL, '$2y$12$9CFZsNf4XJ1HRSay9Sy5eOnjLfuanBD7VJYDKDeCmDREymCrUmKae', NULL, 3, 'fdfdsfsd', 'rerer', 1, 'male', '2024-06-13', '', '', '65645634', '2024-06-13', 'vlj6fd70ghpvg5ddgdvh.png', '', '', '', 0, 0, '2024-06-13 10:22:39', '2024-06-13 10:22:39'),
-(31, 'Ruma456', 'Sultana123', 'final@gmail.com', NULL, '$2y$12$jVgEQx/9eWXlHt0neURQ.e2HHSl6.CRo0G0K0PAnorM0V88kHw5OO', NULL, 3, '434', '54545', 1, 'Female', '2024-06-12', 'Sunne', 'islam', '45454576', '2024-06-13', '20240623095929hxfqiqhcqvpalopym5v9.jpg', 'O+', '4', '5', 0, 0, '2024-06-13 10:32:12', '2024-06-23 03:59:29'),
-(32, 'RSA', 'MSA', 'rsamsa@gmail.com', NULL, '$2y$12$CLNjsajhGcvnOp.uk.8QJuK0Z6YKqds.aL.EfbUJNR4sqw84FRKbG', NULL, 3, '11111111', '22222', 10, 'Female', '2024-06-24', 'Sunne', 'islam', '12312233', '2024-06-24', '20240624092810ychex6odqoe3p126jqz9.jpeg', 'O+', '6', '70', 0, 0, '2024-06-24 03:28:10', '2024-06-24 03:28:10');
+INSERT INTO `users` (`id`, `parent_id`, `name`, `last_name`, `email`, `email_verified_at`, `password`, `remember_token`, `user_type`, `admission_number`, `roll_number`, `class_id`, `gender`, `date_of_birth`, `caste`, `religion`, `mobile_number`, `admission_date`, `profile_pic`, `blood_group`, `height`, `weight`, `occupation`, `address`, `is_delete`, `status`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'Admin', NULL, 'admin1@gmail.com', NULL, '$2y$12$yVQ1hb.iFttW3DxxoPdtA.XRgCrotQSMNLhatSqipRUKq8ag1qwSC', '4XOU6UiSyqbouMzvSGFUi29NvpMKYzsIXA7GKLEOoioZePggBn7DO3qjhvnS', 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2024-05-26 19:39:49', '2024-06-01 04:12:09'),
+(2, NULL, 'Teacher', NULL, 'teacher@gmail.com', NULL, '$2y$12$FO5L6o7/j/Y9z19WLlsJx.s6iev5xTk8g9MowH9ERGxMt60dK.1oa', 'PXXXOAQhjDfZOyTzWUIYZOyRB0WAqBJpi2lwaWITEKHRfyNpLDWDXhz3hmUc', 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2024-05-26 20:08:57', '2024-05-31 13:53:04'),
+(4, NULL, 'Student', NULL, 'student@gmail.com', NULL, '$2y$12$s75BBAfKJlWglO9ZhLPa7.TGLNqZMjgsH2BPaeRRoRwdj3OveXdB2', 'Gr4QIKC6htai8s4MJe28L3mOJuq5QnzwSVhm2CrYyHNHRKq7VuwryID412Ih', 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-05-26 19:39:49', '2024-06-24 01:45:34'),
+(5, NULL, 'Parent', NULL, 'parent@gmail.com', NULL, '$2y$12$iWTSrMTtw8hRQfpHzghhoOd9jW5jitZG4TwDPQ.xJzUylisHFUwFa', 'RytzijcDZvJ8N1MmzK6c57LukPZN3f', 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-05-26 19:39:49', '2024-06-26 11:18:01'),
+(6, NULL, 'umair', NULL, 'umair@gmail.com', NULL, '$2y$12$MxYldJnKKZAkEyiD.Seuf.cXIG2sBna4qSTJa69JygBlnPEYlZ866', NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-05-30 15:38:17', '2024-06-24 01:45:28'),
+(9, NULL, 'Hasin', NULL, 'Hasin@gmail.com', NULL, '$2y$12$pzqikNLntPXRwZeeY.nVLuFL7RDiSfCSaE.cL1J.rtrN2aM2CqSkm', NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-05-30 15:40:17', '2024-06-24 01:45:21'),
+(10, NULL, 'Kadija', NULL, 'kadina@gmail.com', NULL, '$2y$12$CsRVOmMWS68L7skdVfLJHuojCJ11Nr/Y5j350aIfq21.CI9jOWVqO', NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-05-30 15:41:02', '2024-06-24 01:45:11'),
+(11, NULL, 'Shahed', NULL, 'shahed@gmail.com', NULL, '$2y$12$NAeVW2YMP5gUM/BIElYJEebdFMtwEzWbjld8iyfkGXolo5NleBM2.', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2024-05-30 15:45:21', '2024-05-30 15:45:21'),
+(12, NULL, 'kazi', NULL, 'kazi@gmail.com', NULL, '$2y$12$bg9giD/9At1sQVnjzj/8pe1DT0JrPcVGmUBWcq2hek/r0MD/SPAHO', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-05-31 03:12:26', '2024-06-01 02:42:45'),
+(16, NULL, 'KAZI1', NULL, 'kazi1@gmail.com', NULL, '$2y$12$0VDmx/p5pc63MtjhQkkrv.yyfBWeBAn4E/BW.BZRYLYXtjh9/lZy.', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 0, '2024-06-01 03:32:21', '2024-06-01 03:32:40'),
+(17, NULL, 'Admin1', NULL, 'admin@gmail.com', NULL, '$2y$12$/ijSGTBxV05HCZvfYqLD1e1K/Fbt/gh0VDxdO2plNhnZZvBJOIuj2', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, '2024-06-01 04:12:37', '2024-06-12 02:46:35'),
+(25, 33, 'Shahed', 'tee', 'dfdn@gmail.com', NULL, '$2y$12$nBPZ19elyP5RYx7yPyJ00ebBA1isBs8es8lkTTRwvdSmD2LQPXIZS', NULL, 3, 'fdfdsfsd', 'rerer', 1, 'Male', '2024-06-13', '', '', '12345676', '2024-06-13', 'tx5kkkijhas4ssrsdze7.jpg', '', '4', '34', NULL, NULL, 0, 0, '2024-06-13 03:52:00', '2024-06-28 00:30:29'),
+(26, NULL, 'sha', 'test', 'hjhghg@gmail.com', NULL, '$2y$12$KVpocQKvgZ0KMiJR4cxt5.Pipc/o6qEZB3gND9SCBYP0kFCOjlCAy', NULL, 3, 'fdfdsfsd', 'fdfdfsd', 1, 'male', '2024-06-20', 'dfd', 'fdfd', '65645634', '2024-06-20', 'v38jwk1qdsvm5yqafa5r.jpg', 'a', '4', '5', NULL, NULL, 0, 0, '2024-06-13 04:00:34', '2024-06-13 04:00:34'),
+(27, NULL, 'zyx', 'test', 'ghgh@gmail.com', NULL, '$2y$12$LrYUO.LrFzbm/ISc77sVpet2dlTTK1jap1sAXSxTjCn0IUml2k7CK', NULL, 3, '333', 'rerer', 1, 'male', '2024-06-13', 'fdf', 'fdfsd', '65645634', '2024-06-13', 'dojdmsntozwggxwuio2r.jpg', 's', '4', '5', NULL, NULL, 1, 0, '2024-06-13 04:22:30', '2024-06-24 01:45:47'),
+(28, NULL, 'hasin', 'abrar', 'hasinnn@gmail.com', NULL, '$2y$12$nPyZckZAPIfoSQmmWfXWUOgtKmlsS2LvS5OSfPuOucpEpc7p7xL92', NULL, 3, '5555', '66565', 1, 'Male', '2024-06-13', 'dfd', 'islam', '65645634', '2024-06-14', 'e4ittpbkj9flq79vwhng.png', '', '4', '5', NULL, NULL, 0, 1, '2024-06-13 10:07:53', '2024-06-24 15:39:59'),
+(30, NULL, 'Shahed', 'fsdfsdfsdf', 'dfdn1@gmail.com', NULL, '$2y$12$9CFZsNf4XJ1HRSay9Sy5eOnjLfuanBD7VJYDKDeCmDREymCrUmKae', NULL, 3, 'fdfdsfsd', 'rerer', 1, 'male', '2024-06-13', '', '', '65645634', '2024-06-13', 'vlj6fd70ghpvg5ddgdvh.png', '', '', '', NULL, NULL, 0, 0, '2024-06-13 10:22:39', '2024-06-28 00:31:04'),
+(31, NULL, 'Ruma456', 'Sultana123', 'final@gmail.com', NULL, '$2y$12$jVgEQx/9eWXlHt0neURQ.e2HHSl6.CRo0G0K0PAnorM0V88kHw5OO', NULL, 3, '434', '54545', 1, 'Female', '2024-06-12', 'Sunne', 'islam', '45454576', '2024-06-13', '20240623095929hxfqiqhcqvpalopym5v9.jpg', 'O+', '4', '5', NULL, NULL, 0, 0, '2024-06-13 10:32:12', '2024-06-23 03:59:29'),
+(32, NULL, 'RSA', 'MSA', 'rsamsa@gmail.com', NULL, '$2y$12$CLNjsajhGcvnOp.uk.8QJuK0Z6YKqds.aL.EfbUJNR4sqw84FRKbG', NULL, 3, '11111111', '22222', 10, 'Female', '2024-06-24', 'Sunne', 'islam', '12312233', '2024-06-24', '20240624092810ychex6odqoe3p126jqz9.jpeg', 'O+', '6', '70', NULL, NULL, 0, 0, '2024-06-24 03:28:10', '2024-06-24 03:28:10'),
+(33, NULL, 'Ayesa', 'sultana', 'ayesa1@gmail.com', NULL, '$2y$12$FTiDLw0ROwjpa3dn40W0W.zUthFCY7/b2aHrpcFsNPL7sxiYMHiXC', NULL, 4, NULL, NULL, NULL, 'Male', NULL, NULL, NULL, '987665444', NULL, '20240625081755rwox6xbndjtmvmgsjdaw.jpeg', NULL, NULL, NULL, 'House Wife1', 'Hathazari', 0, 0, '2024-06-25 14:17:55', '2024-06-26 11:09:54'),
+(34, NULL, 'Rokgeya', 'Begum', 'rokeya@gmail.com', NULL, '$2y$12$1k5O0EoAttHXaerg0EUhUum6SD6bHn/Ef/.GhS/yfiX6R33U4qlP6', NULL, 4, NULL, NULL, NULL, 'Female', NULL, NULL, NULL, '123321232323', NULL, '20240626060900kq4vznmsvo47hmlaqikw.jpeg', NULL, NULL, NULL, 'House Wife1', 'USA', 0, 0, '2024-06-26 12:09:00', '2024-06-26 12:09:19');
 
 --
 -- Indexes for dumped tables
@@ -433,7 +437,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
