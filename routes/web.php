@@ -11,6 +11,7 @@ use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\ClassSubjectController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ParentsController;
+use App\Http\Controllers\ClassTimetableController;
 use App\Http\Controllers\AssignClassTeacherController;
 
 
@@ -111,10 +112,12 @@ Route::group(['middleware' => 'admin'], function () {
      Route::get('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'edit_single']);
      Route::post('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'update_single']);
     
-
-     
-
+     // Class Timetable
+     Route::get('admin/class_timetable/list', [ClassTimetableController::class, 'list']);
+     Route::post('admin/class_timetable/get_subject', [ClassTimetableController::class, 'get_subject']);
+     Route::post('admin/class_timetable/add', [ClassTimetableController::class, 'insert_update']);
     
+     
     // assign Class Teacher
      Route::get('admin/assign_class_teacher/list', [AssignClassTeacherController::class, 'list']);
      Route::get('admin/assign_class_teacher/add', [AssignClassTeacherController::class, 'add']);

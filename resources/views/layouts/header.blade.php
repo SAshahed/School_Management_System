@@ -161,9 +161,9 @@
                </a>
             </li>
             <li class="nav-item  @if(Request::segment(2)=='class' || Request::segment(2)=='subject' || Request::segment(2)=='assign_subject' 
-            || Request::segment(2)=='assign_class_teacher') menu-is-opening menu-open @endif ">
+            || Request::segment(2)=='class_timetable'|| Request::segment(2)=='assign_class_teacher') menu-is-opening menu-open @endif ">
             <a href="#" class="nav-link  @if(Request::segment(2)=='class' || Request::segment(2)=='subject' || Request::segment(2)=='assign_subject' 
-            || Request::segment(2)=='assign_class_teacher') active @endif ">
+            || Request::segment(2)=='class_timetable' || Request::segment(2)=='assign_class_teacher' ) active @endif ">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Academics
@@ -187,6 +187,12 @@
                 <a href="{{ url('admin/assign_subject/list') }}" class="nav-link @if(Request::segment(2)=='assign_subject') active @endif">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Assign Subject</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('admin/class_timetable/list') }}" class="nav-link @if(Request::segment(2)=='class_timetable') active @endif">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Class Timetable</p>
                 </a>
               </li>
               <li class="nav-item">
