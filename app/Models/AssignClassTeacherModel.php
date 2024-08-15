@@ -52,7 +52,7 @@ class AssignClassTeacherModel extends Model
     static public function getMyClassSubject($teacher_id)
     {
         return self::select('assign_class_teacher.*', 'class.name as class_name',
-                            'subject.name as subject_name','subject.type as subject_type')
+                            'subject.name as subject_name','subject.type as subject_type', 'class.id as class_id', 'subject.id as subject_id')
         
         
         ->join('class','class.id','=','assign_class_teacher.class_id')
@@ -91,6 +91,13 @@ static public function deleteTeacher($class_id)
     
 } 
 
+static public function getMyTimeTable($class_id, $subject_id)
+ {
+    return date('d-l-Y');
+    
+   
+ }
+ 
 
 }
 

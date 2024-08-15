@@ -40,7 +40,9 @@
                       <th>Class Name</th>
                       <th>Subject Name</th>
                       <th>Subject Type</th>
+                      <th>My Class Timetable</th>
                       <th>Created Date</th>
+                      <th>Action</th>
                      
                       
                     </tr>
@@ -53,8 +55,16 @@
                     <td>{{ $value->class_name }} </td>
                     <td>{{ $value->subject_name }} </td>
                     <td>{{ $value->subject_type }} </td>
+                    <td>
+
+                    {{ $value->getMyTimeTable($value->class_id,$value->subject_id) }}
+                      
+                     </td>
+                      
                     <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }} </td>
-                 
+                    <td>
+                      <a href="{{ url('teacher/my_class_subject/class_timetable/'.$value->class_id.'/'.$value->subject_id) }}" class="btn btn-primary"> My Class Timetable </a>
+                    </td>
                    </tr>
 
                    @endforeach
