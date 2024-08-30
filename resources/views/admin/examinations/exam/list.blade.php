@@ -32,7 +32,7 @@
                   <div class="row">
                   <div class="form-group col-md-3">
                     <label>Exam Name</label>
-                    <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name"  placeholder="Name">
+                    <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name"  placeholder="Exam Name">
                   </div>
                   
                   <div class="form-group col-md-3">

@@ -17,7 +17,7 @@ class AssignClassTeacherModel extends Model
 
     static public function getRecord()
     {
-        $return = self::select('assign_class_teacher.*', 'class.name as class_name','teacher.name as teacher_name','users.name as created_by_name')
+        $return = AssignClassTeacherModel::select('assign_class_teacher.*', 'class.name as class_name','teacher.name as teacher_name','users.name as created_by_name')
                       ->join('users as teacher','teacher.id','=','assign_class_teacher.teacher_id')
                       ->join('class','class.id','=','assign_class_teacher.class_id')
                       ->join('users','users.id','=','assign_class_teacher.created_by')
@@ -51,7 +51,7 @@ class AssignClassTeacherModel extends Model
     
     static public function getMyClassSubject($teacher_id)
     {
-        return self::select('assign_class_teacher.*', 'class.name as class_name',
+        return AssignClassTeacherModel::select('assign_class_teacher.*', 'class.name as class_name',
                             'subject.name as subject_name','subject.type as subject_type', 'class.id as class_id', 'subject.id as subject_id')
         
         
@@ -66,6 +66,21 @@ class AssignClassTeacherModel extends Model
         ->where('class_subject.status','=',0)
         ->where('class_subject.is_delete','=',0)
         ->where('assign_class_teacher.teacher_id','=', $teacher_id)
+        ->get();
+
+    }
+    static public function getMyClassSubjectGroup($teacher_id)
+    {
+        return AssignClassTeacherModel::select('assign_class_teacher.*', 'class.name as class_name',
+                            'class.id as class_id', )
+        
+        
+        ->join('class','class.id','=','assign_class_teacher.class_id')
+        ->where('assign_class_teacher.is_delete','=',0)
+        ->where('assign_class_teacher.status','=',0)
+        
+        ->where('assign_class_teacher.teacher_id','=', $teacher_id)
+        ->groupBy('assign_class_teacher.class_id')
         ->get();
 
     }
