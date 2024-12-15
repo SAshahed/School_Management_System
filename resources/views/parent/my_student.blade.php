@@ -95,9 +95,10 @@
                        
 
                         <td>{{ date('d-m-y H:i A',strtotime ($value->created_at)) }} </td>
-                        <td style="width: 300px;"> 
+                        <td style="min-width: 350px;"> 
                           <a class="btn btn-success btn-sm" href="{{ url('parent/my_student/subject/' .$value->id) }}"> Subject </a>
                           <a class="btn btn-primary btn-sm" href="{{ url('parent/my_student/exam_timetable/' .$value->id) }}"> Exam Timetable </a>
+                          <a class="btn btn-success btn-sm" href="{{ url('parent/my_student/calendar/' .$value->id) }}"> Calendar </a>
                         </td>
                         
                         

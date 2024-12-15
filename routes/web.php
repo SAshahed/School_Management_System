@@ -151,6 +151,8 @@ Route::group(['middleware' => 'admin'], function () {
     
     Route::get('admin/examinations/exam_schedule', [ExaminationsController::class, 'exam_schedule']);
     Route::post('admin/examinations/exam_schedule_insert', [ExaminationsController::class, 'exam_schedule_insert']);
+    Route::get('admin/examinations/marks_register', [ExaminationsController::class, 'marks_register']);
+    Route::post('admin/examinations/submit_marks_register', [ExaminationsController::class, 'submit_marks_register']);
     
     
 });
@@ -167,7 +169,7 @@ Route::group(['middleware' => 'teacher'], function () {
     Route::get('teacher/my_student', [StudentController::class, 'MyStudent']);
     Route::get('teacher/my_class_subject/class_timetable/{class_id}/{subject_id}', [ClassTimetableController::class, 'MyTimetableTeacher']);
     Route::get('teacher/my_exam_timetable', [ExaminationsController::class, 'MyExamTimetableTeacher']);
-
+    Route::get('teacher/my_calendar', [CalendarController::class, 'MyCalendarTeacher']);
     
 
 
@@ -197,6 +199,7 @@ Route::group(['middleware' => 'parent'], function () {
     Route::post('parent/account', [UserController::class, 'UpdateMyAccountParent']);
     Route::get('parent/change_password', [UserController::class, 'change_password']);
     Route::post('parent/change_password', [UserController::class, 'update_change_password']);
+    Route::get('parent/my_student/calendar/{student_id}', [CalendarController::class, 'MyCalendarParent']);
    
 
     

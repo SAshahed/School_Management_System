@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\ExamModel;
 use App\Models\ClassModel;
 use App\Models\ClassSubjectModel;
+use App\Models\MarksRegisterModel;
+
 use App\Models\ExamScheduleModel;
 use App\Models\AssignClassTeacherModel;
 use App\Models\User;
@@ -169,6 +171,70 @@ class ExaminationsController extends Controller
 
         return redirect()->back()->with('success',"Exam Schedule Successfully Added");
     }
+
+    public function marks_register(Request $request)
+    {
+        $data['getClass'] = ClassModel::getClass();
+        $data['getExam'] = ExamModel::getExam();
+
+        if(!empty($request->get('exam_id')) && !empty($request->get('class_id')))
+        {
+           $data['getSubject'] = ExamScheduleModel::getSubject($request->get('exam_id'),$request->get('class_id'));
+           $data['getStudent'] = user::getStudentClass($request->get('class_id'));
+          
+        }
+        
+        $data['header_title'] = "Marks Register";
+        return view('admin.examinations.marks_register',$data);
+
+    }
+
+    public function submit_marks_register(Request $request)
+    {
+      if(!empty($request->mark))
+       {
+         foreach ($request->mark as $mark)
+          {
+            $class_work = !empty($mark['class_work']) ? $mark['class_work'] : 0;
+            $home_work = !empty($mark['home_work']) ? $mark['home_work'] : 0;
+            $test_work = !empty($mark['test_work']) ? $mark['test_work'] : 0;
+            $attendance_mark = !empty($mark['attendance_mark']) ? $mark['attendance_mark'] : 0;
+            $exam_mark = !empty($mark['exam_mark']) ? $mark['exam_mark'] : 0;
+           
+            $getMark = MarksRegisterModel::CheckAlreadyMark($request->student_id,$request->exam_id,
+            $request->class_id, $mark['subject_id']);
+
+            if(!empty($getMark))
+            {
+              $save = $getMark;
+            
+
+            }
+            else 
+            {
+                $save               = new MarksRegisterModel;
+                $save->created_by   = Auth::user()->id;
+            } 
+           
+           
+            $save->student_id       = $request->student_id;
+            $save->exam_id          = $request->exam_id;
+            $save->class_id         = $request->class_id;
+            $save->subject_id       = $mark['subject_id'];
+            $save->class_work       = $class_work;
+            $save->home_work        = $home_work;
+            $save->test_work        = $test_work;
+            $save->attendance_mark  = $attendance_mark;
+            $save->exam_mark        = $exam_mark;
+            $save->save();
+          }
+          $json['message'] = "Marks Register successfully saved";
+          echo json_encode($json);
+       }
+      
+    }
+
+    
 
     //Student Side 
 

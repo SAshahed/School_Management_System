@@ -16,7 +16,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>My Calendar</h1>
+            <h1>My Calendar <span style="color:blue;">( {{ $getStudent->name}} {{ $getStudent->last_name}}) </span></h1>
           </div>
          
         </div>
@@ -47,6 +47,7 @@
   <script src="{{ url('../dist/fullcalendar/index.global.js') }}"> </script> 
   <script type="text/javascript">
     var events = new Array();
+    
     @foreach($getMyTimetable as $value)
         @foreach($value['week'] as $week)
           events.push({
@@ -58,7 +59,7 @@
           });
         @endforeach
     @endforeach  
-    
+
     @foreach($getExamTimetable as $valueE)
         @foreach($valueE['exam'] as $exam)
           events.push({
@@ -69,12 +70,13 @@
                  end: '{{ $exam['exam_date'] }}',
                 
                  color: 'red',
-                 url: '{{ url('student/my_exam_timetable')}}'
+                 
                 
                  
           });
         @endforeach
     @endforeach 
+    
 
     var calendarID = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarID, {
