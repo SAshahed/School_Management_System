@@ -17,7 +17,7 @@ Also in all pages, admin level security and invalid page url submission checking
   DB_CONNECTION=mysql
   DB_HOST=127.0.0.1
   DB_PORT=3306
-  DB_DATABASE=nano_sms
+  DB_DATABASE=......
   DB_USERNAME=root
   DB_PASSWORD=
 ```
