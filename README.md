@@ -10,7 +10,7 @@ Also in all pages, admin level security and invalid page url submission checking
  1. clone or downaload this repository to your pc 
  2. copy `Vendor` folder from any laravel 11x app to downloaded Repo 
  3. copy `.env` file from any laravel 11x app to downloaded Repo 
- 4. Create data base (nano_sms)  and emport database from downloaded reppository
+ 4. Create data base (nano_sms)  and import database from downloaded reppository
  5. Update configureation datebase in `.env file`
     
 ```
